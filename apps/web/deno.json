@@ -1,0 +1,43 @@
+{
+  "tasks": {
+    "build": "NODE_ENV=production react-router build",
+    "dev": "react-router dev",
+    "format": "deno fmt",
+    "lint": "deno lint",
+    "start": "deno run -A ./server.production.ts",
+    "compile": {
+      "command": "deno compile -A --output ./dist/server ./server.production.ts",
+      "dependencies": ["build"]
+    },
+    "typecheck": {
+      "command": "deno check --node-modules-dir=auto '**/*'",
+      "dependencies": ["typegen"]
+    },
+    "typegen": "react-router typegen"
+  },
+  "compilerOptions": {
+    "lib": ["deno.window", "dom"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "jsxImportSourceTypes": "@types/react",
+    "rootDirs": [".", "./.react-router/types"],
+    "types": ["vite/client"]
+  },
+  "imports": {
+    "~/": "./app/",
+    "@std/http": "jsr:@std/http@^1.0.11",
+    "@std/path": "jsr:@std/path@^1.0.8",
+    "isbot": "npm:isbot@5.1.25",
+    "react": "npm:react@19.0.0",
+    "react-dom": "npm:react-dom@19.0.0",
+    "react-router": "npm:react-router@latest",
+    "@deno/vite-plugin": "npm:@deno/vite-plugin@1.0.4",
+    "@react-router/dev": "npm:@react-router/dev@latest",
+    "@tailwindcss/vite": "npm:@tailwindcss/vite@4.0.15",
+    "@types/node": "npm:@types/node@22.13.11",
+    "@types/react": "npm:@types/react@19.0.12",
+    "@types/react-dom": "npm:@types/react-dom@19.0.4",
+    "tailwindcss": "npm:tailwindcss@4.0.15",
+    "vite": "npm:vite@6.2.2"
+  }
+}
